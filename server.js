@@ -55,7 +55,7 @@ app.use("/register", registerRoute);
 app.use("/auth", authRoute);
 app.use("/news", newsRoute);
 // app.use(verifyJwt);
-
+// done
 // authorized routes
 app.use("/admin", adminRoute);
 
