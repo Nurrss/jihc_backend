@@ -16,7 +16,7 @@ const verifyJwt = require("./middleware/verifyJwt");
 
 // You can configure it with more options as necessary
 
-const port = process.env.PORT || 8800;
+const port = 3000;
 
 dotenv.config();
 
