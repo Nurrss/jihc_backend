@@ -6,6 +6,8 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const http = require("http");
+const server = http.createServer(app);
 
 const authRoute = require("./routes/auth");
 const adminRoute = require("./routes/admin");
@@ -31,8 +33,8 @@ const options = {
   apis: ["routes/*.js"], // Укажите путь к вашим файлам маршрутов
 };
 const corsConfig = {
-  origin: "http://localhost:8080", // Adjust the origin according to your needs
-  credentials: true,
+  origin: "https://jihc.edu.kz", // Use your deployed frontend domain
+  credentials: true, // To allow cookies and sessions
 };
 
 mongoose
