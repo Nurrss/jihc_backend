@@ -51,13 +51,13 @@ app.use(cors(corsConfig));
 app.options("*", cors(corsConfig));
 app.use(cookieParser());
 
-app.use("/register", registerRoute);
-app.use("/auth", authRoute);
-app.use("/news", newsRoute);
+app.use("/api/register", registerRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/news", newsRoute);
 // app.use(verifyJwt);
 // done
 // authorized routes
-app.use("/admin", adminRoute);
+app.use("/api/admin", adminRoute);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
