@@ -19,7 +19,7 @@ const verifyJwt = require("./middleware/verifyJwt");
 
 // You can configure it with more options as necessary
 
-const port = process.env.PORT || 8800;
+const port = 3000;
 
 dotenv.config();
 
@@ -34,8 +34,8 @@ const options = {
   apis: ["routes/*.js"], // Укажите путь к вашим файлам маршрутов
 };
 const corsConfig = {
-  origin: "https://jihc.edu.kz;", // Use your deployed frontend domain
-  credentials: true, // To allow cookies and sessions
+  origin: "https://jihc.edu.kz", // Adjust the origin according to your needs
+  credentials: true,
 };
 
 mongoose
@@ -54,14 +54,14 @@ app.use(cors(corsConfig));
 app.options("*", cors(corsConfig));
 app.use(cookieParser());
 
-app.use("/register", registerRoute);
-app.use("/auth", authRoute);
-app.use("/news", newsRoute);
-app.use("/text", textRoute);
+app.use("/api/register", registerRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/news", newsRoute);
+app.use("/api/text", textRoute);
 // app.use(verifyJwt);
 // done
 // authorized routes
-app.use("/admin", adminRoute);
+app.use("/api/admin", adminRoute);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
