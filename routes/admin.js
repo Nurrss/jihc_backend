@@ -2,6 +2,7 @@ const router = require("express").Router();
 const _ = require("lodash");
 
 const News = require("../models/News");
+const Text = require("../models/Text");
 const errorHandler = require("../middleware/errorHandler");
 
 // get all done
@@ -73,6 +74,76 @@ router.delete("/news/:id", async (req, res) => {
     } else {
       await News.findByIdAndDelete(newsId).then(
         res.status(200).json(`${newsId} : was deleted`)
+      );
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.route("/text").get(async (req, res) => {
+  try {
+    const textItems = await Text.find();
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.status(200).json(textItems);
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
+
+router.post("/text/add", async (req, res) => {
+  try {
+    console.log(req);
+    const { text } = req.body;
+    const newText = new Text({
+      text,
+    });
+    await newText.save();
+    res.status(200).json(newText);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// get by id
+router.get("/text/:id", async (req, res) => {
+  try {
+    const TextId = _.get(req, "params.id");
+    if (!TextId) {
+      res.status(400).json({ message: "Id not found", success: false });
+    } else {
+      const text = await Text.findById(TextId);
+      res.status(200).json(text);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.put("/text/:id", async (req, res) => {
+  try {
+    const textId = _.get(req, "params.id");
+    const { text } = req.body;
+    const updatedText = await Text.findByIdAndUpdate(textId, {
+      text,
+    });
+    const updated = await updatedText.save();
+    console.log(updated);
+    res.status(200).json(updatedText);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.delete("/text/:id", async (req, res) => {
+  try {
+    const textId = _.get(req, "params.id");
+    if (!textId) {
+      return res.status(400).json({ message: ` ID required.` });
+    } else {
+      await Text.findByIdAndDelete(textId).then(
+        res.status(200).json(`${textId} : was deleted`)
       );
     }
   } catch (err) {

@@ -12,6 +12,7 @@ const server = http.createServer(app);
 const authRoute = require("./routes/auth");
 const adminRoute = require("./routes/admin");
 const newsRoute = require("./routes/news");
+const textRoute = require("./routes/text");
 const registerRoute = require("./routes/register");
 const { logger, logEvents } = require("./middleware/logger");
 const verifyJwt = require("./middleware/verifyJwt");
@@ -33,7 +34,7 @@ const options = {
   apis: ["routes/*.js"], // Укажите путь к вашим файлам маршрутов
 };
 const corsConfig = {
-  origin: "https://jihc.edu.kz", // Use your deployed frontend domain
+  origin: "https://jihc.edu.kz;", // Use your deployed frontend domain
   credentials: true, // To allow cookies and sessions
 };
 
@@ -56,6 +57,7 @@ app.use(cookieParser());
 app.use("/register", registerRoute);
 app.use("/auth", authRoute);
 app.use("/news", newsRoute);
+app.use("/text", textRoute);
 // app.use(verifyJwt);
 // done
 // authorized routes
