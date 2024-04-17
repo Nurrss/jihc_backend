@@ -95,9 +95,10 @@ router.route("/text").get(async (req, res) => {
 router.post("/text/add", async (req, res) => {
   try {
     console.log(req);
-    const { text } = req.body;
+    const { kz_text, rus_text } = req.body;
     const newText = new Text({
-      text,
+      kz_text,
+      rus_text,
     });
     await newText.save();
     res.status(200).json(newText);
@@ -124,9 +125,10 @@ router.get("/text/:id", async (req, res) => {
 router.put("/text/:id", async (req, res) => {
   try {
     const textId = _.get(req, "params.id");
-    const { text } = req.body;
+    const { kz_text, rus_text } = req.body;
     const updatedText = await Text.findByIdAndUpdate(textId, {
-      text,
+      kz_text,
+      rus_text,
     });
     const updated = await updatedText.save();
     console.log(updated);

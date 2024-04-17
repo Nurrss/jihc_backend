@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const TextSchema = new Schema({
-  text: {
+  kz_text: {
+    type: String,
+    required: true,
+  },
+  rus_text: {
     type: String,
     required: true,
   },
