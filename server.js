@@ -34,7 +34,11 @@ const options = {
   apis: ["routes/*.js"], // Укажите путь к вашим файлам маршрутов
 };
 const corsConfig = {
-  origin: ["https://jihc.edu.kz", "http://localhost:8080"],
+  origin: [
+    "https://jihc.edu.kz",
+    "http://localhost:8080",
+    "https://jihc.vercel.app",
+  ],
   credentials: true,
 };
 
