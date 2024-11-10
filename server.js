@@ -38,6 +38,7 @@ const corsConfig = {
     "https://jihc.edu.kz",
     "http://localhost:8080",
     "https://jihc.vercel.app",
+    "https://jihc-backend-vercel.vercel.app",
   ],
   credentials: true,
 };
