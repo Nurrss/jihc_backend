@@ -36,7 +36,10 @@ const options = {
 const corsConfig = {
   origin: [
     "https://jihc.edu.kz",
+    "http://jihc.edu.kz",
+    "http://jihc.edu.kz",
     "http://localhost:8080",
+    "http://185.22.64.28/",
     "https://jihc.vercel.app",
     "https://jihc-backend-vercel.vercel.app",
   ],
